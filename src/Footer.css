@@ -1,0 +1,98 @@
+.footer {
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    width: 98%;
+    height: 65px;
+    background-color: black; 
+    padding: 20px;
+}
+
+
+.footer__left {
+    display: flex;
+    align-items: center;
+    color: white;
+    max-width: 300px;
+    flex: 0.3;
+}
+
+.footer__center {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 300px;
+    padding: 0 100px;
+    color: white;
+    flex: 0.4;
+}
+
+.footer__right {
+    display: flex;
+    align-items: center;
+    padding: 0 100px;
+    max-width: 300px;
+    color: white;
+    justify-content: flex-end;
+    flex: 0.3;
+}
+
+.footer__albumLogo {
+    height: 60px;
+    width: 60px;
+    object-fit: contain;
+    margin-right: 20px;
+}
+
+.footer__songInfo > h4 {
+    margin-bottom: 5px;
+}
+
+.footer__songInfo > p {
+    font-size: 12px;
+}
+
+.footer__green {
+    color: green;
+}
+
+.footer__icon:hover,
+.footer__green:hover {
+    transform: scale(1.2);
+    transition: transform 0.2s ease-in-out;
+}
+
+
+/* ---------- Added: true centering with CSS grid ---------- */
+/* Placed last so it wins over the flex rules above. */
+
+.footer {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+}
+
+.footer__left {
+    justify-self: start;
+    max-width: none;
+    min-width: 0;
+}
+
+.footer__center {
+    justify-self: center;
+    max-width: none;
+    padding: 0;
+    gap: 18px;
+}
+
+.footer__right {
+    justify-self: end;
+    max-width: none;
+    padding: 0;
+}
+
+.footer__albumPlaceholder {
+    background: linear-gradient(135deg, #1ed15e, #121212);
+}
