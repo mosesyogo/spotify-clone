@@ -1,33 +1,56 @@
 .header {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 30px;
+    align-items: center;
+    gap: 12px;
+    /* margin-bottom removed: the spacing now lives on .body__top */
 }
 
 .header__left {
-    flex: 0.5;
+    flex: 1;
+    min-width: 0;                 /* lets the search box shrink */
     max-width: 300px;
     display: flex;
     align-items: center;
+    gap: 6px;
     color: gray;
     background-color: white;
     border-radius: 30px;
     padding: 10px;
+    box-sizing: border-box;
 }
 
 .header__left > input {
+    flex: 1;
+    min-width: 0;                 /* inputs have a built-in minimum width */
     border: none;
     outline: none;
     background-color: transparent;
     width: 100%;
+    text-overflow: ellipsis;      /* long placeholder ends with "..." instead of cutting */
 }
 
 .header__right {
     display: flex;
     align-items: center;
+    flex-shrink: 0;
     color: white;
 }
 
-.header__right > h4{
-    margin-left: 10px;
+.header__right > h4 {
+    margin: 0 0 0 10px;
+    max-width: 120px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+@media (max-width: 480px) {
+    .header__right > h4  {
+    display: none; 
+    }
+
+    .header__right > h4 {
+        display: none;            /* the avatar alone is enough on a small phone */
+    }
 }

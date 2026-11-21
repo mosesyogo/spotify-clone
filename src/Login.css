@@ -1,21 +1,35 @@
-.login{
-    display: grid;
-    place-items: center;
-    height: 100vh;
-    background-color:black
+.login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;                    /* space between logo and button */
+    min-height: 100vh;
+    min-height: 100dvh;           /* avoids the mobile address-bar jump */
+    padding: 24px;
+    box-sizing: border-box;
+    background-color: black;
 }
 
-.login > img{
+.login > img {
     width: 100%;
     max-width: 300px;
-    margin-bottom: 50px;
+    margin: 0;                    /* replaced by the gap above */
 }
 
-.login > a{
-    padding: 20px;
+.login > a {
+    padding: 16px 40px;
     border-radius: 99px;
     background-color: #1db954;
     color: white;
     text-decoration: none;
     font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+.login > a:hover {
+    background-color: #1ed760;    /* Spotify's lighter green */
+    transform: scale(1.04);
 }

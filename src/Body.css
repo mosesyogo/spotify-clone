@@ -65,3 +65,60 @@
     margin: 0 20px;
     box-shadow: 0 4px 60px rgba(0, 0, 0, 0.5);
 }
+
+.body {
+  flex: 1;
+  min-width: 0;                 /* lets the content shrink so the title isn't cut off */
+}
+
+.body__top {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+
+@media (max-width: 480px) {
+  .body__top {
+    margin-bottom: 20px;
+  }
+}
+
+.body__top > *:not(button) {
+  flex: 1;
+  min-width: 0;                 /* your Header fills the rest of the row */
+}
+
+
+.body__menuButton {
+  display: none;                /* desktop has the sidebar, so no button there */
+  flex-shrink: 0;
+  background: none;
+  border: 0;
+  color: white;
+  cursor: pointer;
+  padding: 8px;
+}
+
+@media (max-width: 768px) {
+  .body__menuButton {
+    display: flex;
+  }
+
+  /* playlist cover and text stack instead of squeezing side by side */
+  .body__info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .body__info > img {
+    height: 160px;
+    width: 160px;
+    object-fit: cover;
+  }
+
+  .body__infoText h2 {
+    font-size: 28px;
+  }
+}

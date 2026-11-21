@@ -2,12 +2,13 @@ import React from 'react'
 import './Body.css'
 import Header from './Header'
 import { useDataLayerValue } from './DataLayer'
+import MenuIcon from '@mui/icons-material/Menu';
 import PlayCircleFilledIcon from '@mui/icons-material/PlayCircleFilled';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import SongRow from './SongRow'
 
-function Body({ spotify }) {
+function Body({ spotify, onMenuClick }) {
   const [{ discover_weekly }] = useDataLayerValue();
 
   // Spotify's 2026 API renamed tracks.items -> items.items (old shape kept as a fallback)
@@ -15,7 +16,17 @@ function Body({ spotify }) {
 
   return (
     <div className='body'>
-      <Header spotify={spotify} />
+      <div className='body__top'>
+        <button
+          type='button'
+          className='body__menuButton'
+          onClick={onMenuClick}
+          aria-label='Open menu'
+        >
+          <MenuIcon />
+        </button>
+        <Header spotify={spotify} />
+      </div>
 
       <div className='body__info'>
         <img
@@ -34,7 +45,6 @@ function Body({ spotify }) {
           <FavoriteIcon fontSize='large' />
           <MoreHorizIcon />
         </div>
-        {/* You can add song list rendering here */}
         {entries.map((entry, index) => {
           // each entry's song is now called "item" (it used to be "track")
           const track = entry?.item || entry?.track;
@@ -44,7 +54,5 @@ function Body({ spotify }) {
     </div>
   )
 }
-
-
 
 export default Body

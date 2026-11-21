@@ -1,42 +1,42 @@
 .footer {
     position: fixed;
     bottom: 0;
-    display: flex;
-    justify-content: space-between;
+    left: 0;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    width: 100%;
+    height: var(--footer-height, 80px);
+    box-sizing: border-box;
+    padding: 0 20px;
     color: white;
-    width: 98%;
-    height: 65px;
-    background-color: black; 
-    padding: 20px;
+    background-color: black;
+    z-index: 60;
 }
-
 
 .footer__left {
     display: flex;
     align-items: center;
+    justify-self: start;
+    min-width: 0;
     color: white;
-    max-width: 300px;
-    flex: 0.3;
 }
 
 .footer__center {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    max-width: 300px;
-    padding: 0 100px;
+    justify-self: center;
+    gap: 18px;
     color: white;
-    flex: 0.4;
 }
 
 .footer__right {
     display: flex;
     align-items: center;
-    padding: 0 100px;
-    max-width: 300px;
-    color: white;
     justify-content: flex-end;
-    flex: 0.3;
+    justify-self: end;
+    color: white;
 }
 
 .footer__albumLogo {
@@ -44,18 +44,34 @@
     width: 60px;
     object-fit: contain;
     margin-right: 20px;
+    flex-shrink: 0;
+}
+
+.footer__albumPlaceholder {
+    background: linear-gradient(135deg, #1ed15e, #121212);
+}
+
+.footer__songInfo {
+    min-width: 0;                 /* lets long titles truncate instead of overflowing */
 }
 
 .footer__songInfo > h4 {
-    margin-bottom: 5px;
+    margin: 0 0 5px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .footer__songInfo > p {
+    margin: 0;
     font-size: 12px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .footer__green {
-    color: green;
+    color: #1ed15e;               /* Spotify green for active shuffle and repeat */
 }
 
 .footer__icon:hover,
@@ -64,35 +80,26 @@
     transition: transform 0.2s ease-in-out;
 }
 
+/* ---------- phones ---------- */
+@media (max-width: 768px) {
+    .footer {
+        grid-template-columns: minmax(0, 1fr) auto;
+        padding: 0 12px;
+        gap: 12px;
+    }
 
-/* ---------- Added: true centering with CSS grid ---------- */
-/* Placed last so it wins over the flex rules above. */
+    .footer__albumLogo {
+        height: 44px;
+        width: 44px;
+        margin-right: 10px;
+    }
 
-.footer {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    align-items: center;
-}
+    .footer__center {
+        gap: 10px;
+    }
 
-.footer__left {
-    justify-self: start;
-    max-width: none;
-    min-width: 0;
-}
-
-.footer__center {
-    justify-self: center;
-    max-width: none;
-    padding: 0;
-    gap: 18px;
-}
-
-.footer__right {
-    justify-self: end;
-    max-width: none;
-    padding: 0;
-}
-
-.footer__albumPlaceholder {
-    background: linear-gradient(135deg, #1ed15e, #121212);
+    /* volume slider doesn't fit; phones use the hardware buttons */
+    .footer__right {
+        display: none;
+    }
 }

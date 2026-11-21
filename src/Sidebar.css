@@ -1,12 +1,20 @@
+:root {
+    --footer-height: 80px;   /* remove this line if it's already defined elsewhere */
+}
+
 .sidebar {
     flex: 0.2;
-    height: 100vh;
-    color: white;
     min-width: 230px;
-    padding-left: 10px;
-    padding-right: 10px;
-    background-color: #121212;
-    background: linear-gradient(rgba(#121212, 0.8), rgba(18, 18, 18, 0.8)), url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8bXVzaWMlMjBjb25jZXJ0fGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60") no-repeat center center;
+    height: calc(100vh - var(--footer-height));
+    overflow-y: auto;
+    box-sizing: border-box;
+    padding: 0 10px;
+    color: white;
+    background-color: #000000;    /* Spotify's sidebar is pure black; use #121212 for softer */
+}
+
+.sidebar::-webkit-scrollbar {
+    display: none;
 }
 
 .sidebar__logo {
@@ -23,12 +31,22 @@
     font-size: 12px;
 }
 
-.sidebar {
-    height: calc(100vh - var(--footer-height));
-    overflow-y: auto;
-    box-sizing: border-box;
-}
+/* phones: the sidebar becomes a slide-in drawer above the player bar */
+@media (max-width: 768px) {
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: var(--footer-height);
+        height: auto;
+        width: 240px;
+        min-width: 0;
+        z-index: 50;
+        transform: translateX(-100%);
+        transition: transform 0.25s ease;
+    }
 
-.sidebar::-webkit-scrollbar {
-    display: none;
+    .sidebar.open {
+        transform: translateX(0);
+    }
 }

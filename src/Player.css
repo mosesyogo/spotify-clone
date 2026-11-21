@@ -2,3 +2,26 @@
     display: flex;
     
 }
+
+.player_backdrop {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .player_backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    bottom: var(--footer-height);   /* keeps the player bar clickable */
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 40;                    /* below the sidebar's z-index: 50 */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+  }
+
+  .player_backdrop.show {
+    opacity: 1;
+    visibility: visible;
+  }
+}
